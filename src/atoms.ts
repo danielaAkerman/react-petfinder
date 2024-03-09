@@ -28,3 +28,21 @@ export const traerPerrosSelector = selector({
   },
 });
 
+
+
+// MOSTRAR MODAL LOSTPETEITEM
+
+export const ShowModalLostPet = atom({
+  key: "ShowModalLostPet",
+  default: false,
+});
+
+
+// DATOS MODAL LOSTPETEITEM
+
+export const DataModalLostPet = atom({
+  key: "DataModalLostPet",
+  default: {
+    name: "", objectID: ""
+  }
+});

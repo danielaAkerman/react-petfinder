@@ -2,8 +2,7 @@ import React from "react";
 import css from "./index.css";
 import { DataModalLostPet, ShowModalLostPet } from "../../atoms";
 import { useRecoilState } from "recoil";
-
-
+import { enviarReporte } from "../../api";
 
 export function ModalLostPet() {
 
@@ -13,12 +12,66 @@ export function ModalLostPet() {
   function ocultarModal() {
     setShowModal(false)
   }
+  const { name, objectID } = dataModal
 
 
-  return (
-    <div className={css.root}>
-      MODAL {dataModal.name} {dataModal.objectID}
-      <button onClick={ocultarModal}>Cerrar modal</button>
+  function submittedForm(e) {
+    e.preventDefault()
+
+    const reporte: any = {};
+
+    reporte.pet_name = name;
+    reporte.reporter = e.target.nombre.value
+    reporte.phone_number = e.target.telefono.value
+    reporte.message = e.target.mensaje.value
+    reporte.pet_id = objectID;
+
+    enviarReporte(reporte);
+    ocultarModal()
+  }
+
+
+  return (<div>
+
+    <div className={css.root}></div>
+
+    <div className={css.content}>
+      <div className="xButtonContainer">
+
+        <button onClick={ocultarModal}>X</button>
+      </div>
+
+      AYUDANOS A ENCONTRAR A {name}
+ 
+ 
+      <form className="form" onSubmit={submittedForm}>
+
+        <label className="label">
+          <span>Tu nombre:</span>
+ 
+          <input name="nombre" />
+        </label>
+ 
+ 
+        <label className="label">
+          <span>Tu teléfono:</span>
+ 
+          <input name="telefono" />
+        </label>
+ 
+ 
+        <label className="label">
+          <span>¿Dónde viste a {name}?</span>
+ 
+          <textarea name="mensaje" />
+        </label>
+ 
+ 
+        <button>ENVIAR DATOS</button>
+
+
+      </form>
     </div>
+  </div>
   );
 }

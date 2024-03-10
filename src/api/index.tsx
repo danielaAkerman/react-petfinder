@@ -1,7 +1,7 @@
 // import { useRecoilState } from "recoil";
 // import { userDataAtom } from "../atoms";
 
-// const url = "https://lostpets.onrender.com";
+const url = "https://lostpets.onrender.com";
 
 // const userToken = localStorage.getItem("token");
 
@@ -23,3 +23,18 @@
 //       setUserDataState(userData);
 //     });
 // }
+
+
+// ENVIAR REPORTE
+export function enviarReporte(reporte) {
+    fetch(url + "/new-report", {
+        method: "post",
+        headers: {
+            "content-type": "application/json",
+        },
+        body: JSON.stringify(reporte),
+    })
+    .then((res) => {
+      return res.json();
+    })
+}

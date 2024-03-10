@@ -35,9 +35,9 @@ function UbicationPage() {
       <div className="img-container">
         {/* <img src={search} className="img-fluid" /> */}
       </div>
-      <p className="">Para continuar, necesitamos conocer tu ubicación</p>
+      <p className="">Encontrá y reportá mascotas cerca de tu ubicación</p>
       <div onClick={aceptar}>
-        <MainButton>Aceptar</MainButton>
+        <MainButton>Dar mi ubicación</MainButton>
       </div>
 
     </div>

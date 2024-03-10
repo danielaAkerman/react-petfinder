@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import React from "react";
+import { useRecoilState } from "recoil";
 import css from "./index.css";
 import { usePerrosCerca } from "../../hooks";
 import { LostPetsNearMeItem } from "../../components/LostPetsNearMeItem";
@@ -13,7 +13,6 @@ function PetsPage() {
   const [showModal, setShowModal] = useRecoilState(ShowModalLostPet)
 
   const mascotasCercanas = usePerrosCerca()
-  console.log(mascotasCercanas)
 
   return (
     <div className={css.root}>

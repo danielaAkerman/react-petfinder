@@ -46,3 +46,10 @@ export const DataModalLostPet = atom({
     name: "", objectID: ""
   }
 });
+
+// ESTÁ LOGGED?
+
+export const Logged = atom({
+  key: "Logged",
+  default: true
+});

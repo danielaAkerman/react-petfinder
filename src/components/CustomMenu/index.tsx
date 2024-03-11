@@ -1,0 +1,50 @@
+import React, { useState } from "react";
+import css from "./index.css";
+import { Logged } from "../../atoms";
+import { useRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
+
+export function CustomMenu() {
+
+  const navigate = useNavigate()
+
+  const [logged, setLogged] = useRecoilState(Logged)
+
+  function irMisDatos() { navigate("/mis-datos", { replace: true }) }
+
+  function irMisMascotasReportadas() { navigate("/mis-mascotas-reportadas", { replace: true }) }
+
+  function irReportarMascota() { navigate("/publicar-mascota", { replace: true }) }
+
+  function irCrearCuenta() { navigate("/crear-cuenta", { replace: true }) }
+
+  function irIniciarSesion() { navigate("/iniciar-sesion", { replace: true }) }
+
+  function irCerrarSesion() { setLogged(false), console.log("CERRAR SESION") }
+
+
+  return (
+    <div>
+
+      {logged ?
+
+        <div className={css.root}>
+          <span className={css["header-item-hello"]}>HOLA</span>
+          <span onClick={irMisDatos} className={css["header-item"]}>Mis datos</span>
+          <span onClick={irMisMascotasReportadas} className={css["header-item"]}>Mis mascotas reportadas</span>
+          <span onClick={irReportarMascota} className={css["header-item"]}>Resportar mascota</span>
+          <span onClick={irCerrarSesion} className={css["header-item"]}>Cerrar sesión</span>
+        </div>
+
+        :
+
+        <div className={css.root}>
+          <span onClick={irCrearCuenta} className={css["header-item"]}>Crear cuenta</span>
+          <span onClick={irIniciarSesion} className={css["header-item"]}>Iniciar sesión</span>
+        </div>
+
+      }
+
+    </div>
+  );
+}

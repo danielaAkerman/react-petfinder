@@ -9,7 +9,7 @@ import { ShowModalLostPet } from "../../atoms";
 
 
 
-function PetsPage() {
+export function LostPetsNearMe() {
   const [showModal, setShowModal] = useRecoilState(ShowModalLostPet)
 
   const mascotasCercanas = usePerrosCerca()
@@ -36,4 +36,3 @@ function PetsPage() {
   );
 }
 
-export { PetsPage };

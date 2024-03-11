@@ -1,0 +1,15 @@
+.root {
+  background-color: salmon;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  cursor: pointer
+}
+
+.logo:hover {
+  text-decoration: underline;
+}

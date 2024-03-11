@@ -36,37 +36,37 @@ export function ModalLostPet() {
     <div className={css.root}></div>
 
     <div className={css.content}>
-      <div className="xButtonContainer">
+      <div className={css.xButtonContainer}>
 
         <button onClick={ocultarModal}>X</button>
       </div>
 
       AYUDANOS A ENCONTRAR A {name}
- 
- 
-      <form className="form" onSubmit={submittedForm}>
 
-        <label className="label">
+
+      <form className={css.form} onSubmit={submittedForm}>
+
+        <label className={css.label}>
           <span>Tu nombre:</span>
- 
+
           <input name="nombre" />
         </label>
- 
- 
-        <label className="label">
+
+
+        <label className={css.label}>
           <span>Tu teléfono:</span>
- 
+
           <input name="telefono" />
         </label>
- 
- 
-        <label className="label">
+
+
+        <label className={css.label}>
           <span>¿Dónde viste a {name}?</span>
- 
+
           <textarea name="mensaje" />
         </label>
- 
- 
+
+
         <button>ENVIAR DATOS</button>
 
 

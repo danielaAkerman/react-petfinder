@@ -15,11 +15,7 @@ export function LostPetsNearMeItem(props: LostPetsNearMeItemProps) {
   const [showModal, setShowModal] = useRecoilState(ShowModalLostPet)
   const [dataModal, setDataModal] = useRecoilState(DataModalLostPet)
 
-
-
-
   function mostrarModal() {
-    console.log("funcion mostrarModal", name, objectID)
     setShowModal(true)
     setDataModal({ name, objectID })
   }

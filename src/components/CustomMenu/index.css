@@ -1,0 +1,16 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-item {
+  cursor: pointer
+}
+
+.header-item:hover {
+  text-decoration: underline;
+}

@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { MainButton } from "../../ui/MyButton";
 import css from "./index.css";
+import { HayUserLocationAtom } from "../../atoms"
 // import { init } from "../../api";
 
 // const search = require("../../assets/img/search.jpeg");
@@ -13,8 +14,11 @@ import css from "./index.css";
 const url = "https://lostpets.onrender.com";
 
 function UbicationPage() {
-  // const [userDataState, setUserDataState] = useRecoilState(userDataAtom); // REEMPLAZAR POR CUSTOM HOOK
+
   const navigate = useNavigate();
+
+  const [hayLocation, setHayLocation] = useRecoilState(HayUserLocationAtom)
+
   function aceptar() {
 
 
@@ -26,6 +30,7 @@ function UbicationPage() {
         lng: e.coords.longitude as any,
       };
 
+      setHayLocation(true)
       navigate("/pets/" + ubication.lat + "&" + ubication.lng, { replace: true });
     })
   }

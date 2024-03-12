@@ -13,6 +13,11 @@ export const UserLocationAtom = atom({
   default: { lat: 0, lng: 0 },
 });
 
+export const HayUserLocationAtom = atom({
+  key: "HayUserLocationAtom",
+  default: false,
+});
+
 export const traerPerrosSelector = selector({
   key: "traerPerrosSelector",
   get: async ({ get }) => {
@@ -47,9 +52,14 @@ export const DataModalLostPet = atom({
   }
 });
 
-// ESTÁ LOGGED?
 
-export const Logged = atom({
+export const LoggedAtom = atom({
   key: "Logged",
   default: true
 });
+
+export const userData = atom({
+  key: "userData",
+  default: { email: "", fullname: "", token: "", userId: "" }
+});
+

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import css from "./index.css";
-import { Logged } from "../../atoms";
+import { HayUserLocationAtom, LoggedAtom, UserLocationAtom, userData } from "../../atoms";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +8,11 @@ export function CustomMenu() {
 
   const navigate = useNavigate()
 
-  const [logged, setLogged] = useRecoilState(Logged)
+  const [logged, setLogged] = useRecoilState(LoggedAtom)
+  const [data, setData] = useRecoilState(userData)
+  const [ubication, setUbication] = useRecoilState(UserLocationAtom)
+  const [hayUbication, setHayUbication] = useRecoilState(HayUserLocationAtom)
+
 
   function irMisDatos() { navigate("/mis-datos", { replace: true }) }
 
@@ -20,7 +24,18 @@ export function CustomMenu() {
 
   function irIniciarSesion() { navigate("/iniciar-sesion", { replace: true }) }
 
-  function irCerrarSesion() { setLogged(false), console.log("CERRAR SESION") }
+  function irCerrarSesion() {
+    setLogged(false)
+    setData({ email: "", fullname: "", token: "", userId: "" })
+
+    localStorage.removeItem("token");
+
+    hayUbication ?
+      navigate("/pets/" + ubication.lat + "&" + ubication.lng, { replace: true })
+      :
+      navigate("/", { replace: true })
+
+  }
 
 
   return (
@@ -29,7 +44,7 @@ export function CustomMenu() {
       {logged ?
 
         <div className={css.root}>
-          <span className={css["header-item-hello"]}>HOLA</span>
+          <span className={css["header-item-hello"]}>HOLA {data.fullname}</span>
           <span onClick={irMisDatos} className={css["header-item"]}>Mis datos</span>
           <span onClick={irMisMascotasReportadas} className={css["header-item"]}>Mis mascotas reportadas</span>
           <span onClick={irReportarMascota} className={css["header-item"]}>Resportar mascota</span>

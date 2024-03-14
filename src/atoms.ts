@@ -58,8 +58,7 @@ export const LoggedAtom = atom({
   default: true
 });
 
-export const userData = atom({
+export const userDataAtom = atom({
   key: "userData",
   default: { email: "", fullname: "", token: "", userId: "" }
 });
-

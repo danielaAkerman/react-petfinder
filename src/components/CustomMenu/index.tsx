@@ -1,6 +1,6 @@
 import React from "react";
 import css from "./index.css";
-import { HayUserLocationAtom, LoggedAtom, UserLocationAtom, userData } from "../../atoms";
+import { HayUserLocationAtom, LoggedAtom, UserLocationAtom, userDataAtom } from "../../atoms";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +9,7 @@ export function CustomMenu() {
   const navigate = useNavigate()
 
   const [logged, setLogged] = useRecoilState(LoggedAtom)
-  const [data, setData] = useRecoilState(userData)
+  const [data, setData] = useRecoilState(userDataAtom)
   const [ubication, setUbication] = useRecoilState(UserLocationAtom)
   const [hayUbication, setHayUbication] = useRecoilState(HayUserLocationAtom)
 

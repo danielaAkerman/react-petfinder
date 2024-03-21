@@ -5,17 +5,23 @@ import { ShowModalLostPet } from "../../atoms";
 import { DataModalLostPet } from "../../atoms";
 import { useRecoilState } from "recoil";
 import { CustomButton } from "../../ui/CustomButton";
+import { useNavigate } from "react-router-dom";
 
-type LostPetsNearMeItemProps = {
+type MyLostPetItemProps = {
   name, ubication, picture_url, objectID, owner?: string
 }
 
-export function LostPetsNearMeItem(props: LostPetsNearMeItemProps) {
+export function MyLostPetItem(props: MyLostPetItemProps) {
   const { name, ubication, picture_url, objectID } = props
   const [showModal, setShowModal] = useRecoilState(ShowModalLostPet)
   const [dataModal, setDataModal] = useRecoilState(DataModalLostPet)
+  const navigate = useNavigate();
 
-  function mostrarModal() {
+  function editarPublicacion() {
+    navigate("/editar-publicacion/" + name + "&" + objectID, { replace: true });
+  }
+
+  function eliminarMascota() {
     setShowModal(true)
     setDataModal({ name, objectID })
   }
@@ -25,7 +31,8 @@ export function LostPetsNearMeItem(props: LostPetsNearMeItemProps) {
       <img src={picture_url} className={css.picture}></img>
       <h4 className={css.name}>Nombre: {name}</h4>
       <h6 className={css.ubication}>Ubicación: {ubication}</h6>
-      <CustomButton name={name} objectID={objectID} funcion={mostrarModal} label={`¿Viste a ${name}?`} />
+      <CustomButton name={name} objectID={objectID} funcion={editarPublicacion} label={`Editar Publicación`} />
+      <CustomButton name={name} objectID={objectID} funcion={eliminarMascota} label={`Eliminar Publicación`} />
     </div>
   );
 }

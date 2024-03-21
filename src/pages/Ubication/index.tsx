@@ -6,7 +6,7 @@ import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { MainButton } from "../../ui/MyButton";
 import css from "./index.css";
-import { HayUserLocationAtom } from "../../atoms"
+import { HayUserLocationAtom, LoggedAtom, userDataAtom } from "../../atoms"
 // import { init } from "../../api";
 
 // const search = require("../../assets/img/search.jpeg");
@@ -18,12 +18,36 @@ function UbicationPage() {
   const navigate = useNavigate();
 
   const [hayLocation, setHayLocation] = useRecoilState(HayUserLocationAtom)
+  const [userData, setUserData] = useRecoilState(userDataAtom)
+  const [logged, setLogged] = useRecoilState(LoggedAtom)
+
+  // VER SI HAY TOKEN PARA LOGUEAR
+
+  const userToken = localStorage.getItem("token");
+
+  if (userData.fullname == "" && userToken) {
+
+    // init()
+    fetch(url + "/init/" + userToken, {})
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        const { id, email, fullname } = data;
+
+        const userData: any = {};
+
+        userData.userId = id;
+        userData.email = email;
+        userData.fullname = fullname;
+        userData.token = userToken;
+        setUserData(userData);
+        setLogged(true)
+      });
+  }
+
 
   function aceptar() {
-
-
-    // ACA OBTENER LAT Y LNG, Y AÑADIRLOS A LA URL
-
     navigator.geolocation.getCurrentPosition((e) => {
       const ubication = {
         lat: e.coords.latitude as any,

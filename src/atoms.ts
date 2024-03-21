@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { atom, selector, useRecoilValue } from "recoil";
+import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
 const url = "https://lostpets.onrender.com";
 
 
@@ -55,10 +55,28 @@ export const DataModalLostPet = atom({
 
 export const LoggedAtom = atom({
   key: "Logged",
-  default: true
+  default: false
 });
 
 export const userDataAtom = atom({
   key: "userData",
   default: { email: "", fullname: "", token: "", userId: "" }
+});
+
+export const cambioAtom = atom({
+  // esto se activa despues de publicar o editar una mascota propia, asignándole números random
+  key: "cambioAtom",
+  default: 1
+});
+
+export const myReportedPetsSelector = selector({
+  key: "myReportedPetsSelector",
+  get: async ({ get }) => {
+    const userId = get(userDataAtom).userId;
+    const cambio = get(cambioAtom) // Para que traiga la info actualizada
+
+    const res = await fetch(url + "/my-pets/" + userId);
+    const results = await res.json();
+    return results;
+  },
 });

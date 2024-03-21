@@ -10,11 +10,6 @@ type CustomButtonProps = {
 
 export function CustomButton(props: CustomButtonProps) {
   const { name, objectID , funcion, label} = props
-  // const [showModal, setShowModal] = useRecoilState(ShowModalLostPet)
-
-  // ejecutar la funcion q le manden
-  // funcion()
-
 
   return (
     <div className={css.root}>

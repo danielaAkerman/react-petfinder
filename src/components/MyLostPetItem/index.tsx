@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import css from "./index.css";
 import { ModalLostPet } from "../ModalLostPet";
-import { ShowModalLostPet } from "../../atoms";
-import { DataModalLostPet } from "../../atoms";
+import { ShowModalLostPet, DataModalLostPet, datosMyPet, cambioAtom } from "../../atoms";
 import { useRecoilState } from "recoil";
 import { CustomButton } from "../../ui/CustomButton";
 import { useNavigate } from "react-router-dom";
+const url = "https://lostpets.onrender.com";
 
 type MyLostPetItemProps = {
   name, ubication, picture_url, objectID, owner?: string
@@ -15,15 +15,42 @@ export function MyLostPetItem(props: MyLostPetItemProps) {
   const { name, ubication, picture_url, objectID } = props
   const [showModal, setShowModal] = useRecoilState(ShowModalLostPet)
   const [dataModal, setDataModal] = useRecoilState(DataModalLostPet)
+  const [dataMyPet, setDataMyPet] = useRecoilState(datosMyPet)
+  const [cambio, setcambio] = useRecoilState(cambioAtom)
   const navigate = useNavigate();
 
   function editarPublicacion() {
-    navigate("/editar-publicacion/" + name + "&" + objectID, { replace: true });
+
+    setDataMyPet(
+      {
+        objectID,
+        name,
+        ubication,
+        picture_url
+      }
+    )
+
+    navigate("/editar-publicacion/", { replace: true });
+
   }
 
   function eliminarMascota() {
-    setShowModal(true)
-    setDataModal({ name, objectID })
+    fetch(url + "/delete-pet/" + objectID, {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status: "deleted" }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Mascota Eliminada");
+        setcambio(Math.random())
+        navigate("/mis-mascotas-reportadas", { replace: true })
+      });
+
   }
 
   return (

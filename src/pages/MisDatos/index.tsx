@@ -7,11 +7,33 @@ const url = "https://lostpets.onrender.com";
 export function MisDatos() {
 
   const [logged, setLogged] = useRecoilState(LoggedAtom)
-  const [data, setData] = useRecoilState(userDataAtom)
+  const [userData, setUserData] = useRecoilState(userDataAtom)
+  const { email, fullname, token, userId } = userData
 
-  const { email, fullname, token, userId } = data
+  console.log("Inicialmente los valores del user son:", {userData});
 
-  console.log("Inicialmente los valores del user son:", {data});
+  const userToken = localStorage.getItem("token");
+
+  if (userData.fullname == "" && userToken) {
+
+    console.log("hay token")
+    fetch(url + "/init/" + userToken, {})
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        const { id, email, fullname } = data;
+
+        const userData: any = {};
+
+        userData.userId = id;
+        userData.email = email;
+        userData.fullname = fullname;
+        userData.token = userToken;
+        setUserData(userData);
+        setLogged(true)
+      });
+  }
 
   function updateDatos(e){
     e.preventDefault();
@@ -40,7 +62,7 @@ export function MisDatos() {
           return res.json();
         })
         .then(() => {
-          setData(dataValues);
+          setUserData(dataValues);
         });
     } else {
       const advertencia = document.querySelector(".advertencia")

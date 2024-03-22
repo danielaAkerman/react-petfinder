@@ -10,7 +10,7 @@ const url = "https://lostpets.onrender.com";
 
 export const UserLocationAtom = atom({
   key: "UserLocationAtom",
-  default: { lat: 0, lng: 0 },
+  default: { lat: null, lng: null },
 });
 
 export const HayUserLocationAtom = atom({
@@ -60,7 +60,7 @@ export const LoggedAtom = atom({
 
 export const userDataAtom = atom({
   key: "userData",
-  default: { email: "", fullname: "", token: "", userId: "" }
+  default: { email: "", fullname: "", token: "", userId: null }
 });
 
 export const cambioAtom = atom({
@@ -78,5 +78,16 @@ export const myReportedPetsSelector = selector({
     const res = await fetch(url + "/my-pets/" + userId);
     const results = await res.json();
     return results;
+    // return [];
   },
+});
+
+export const datosMyPet = atom({
+  key: "datosMyPet",
+  default: {
+    objectID: null,
+    name: "",
+    ubication: "",
+    picture_url: ""
+  }
 });

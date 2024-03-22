@@ -4,12 +4,14 @@ import css from "./index.css";
 import { usePerrosCerca } from "../../hooks";
 import { LostPetsNearMeItem } from "../../components/LostPetsNearMeItem";
 import { ModalLostPet } from "../../components/ModalLostPet";
-import { ShowModalLostPet } from "../../atoms";
+import { ShowModalLostPet, UserLocationAtom } from "../../atoms";
+import { useNavigate } from "react-router-dom";
 
 
 
 
 export function LostPetsNearMe() {
+  const navigate = useNavigate()
   const [showModal, setShowModal] = useRecoilState(ShowModalLostPet)
 
   const mascotasCercanas = usePerrosCerca()

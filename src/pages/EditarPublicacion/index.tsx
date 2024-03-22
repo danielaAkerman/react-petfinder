@@ -1,45 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { MyInput } from "../../ui/MyInput";
 import { MainButton } from "../../ui/MyButton";
-import { useRecoilState} from "recoil";
-import { userDataAtom } from "../../atoms";
+import { useRecoilState } from "recoil";
+import { UserLocationAtom, cambioAtom, datosMyPet, userDataAtom } from "../../atoms";
 import css from "./index.css";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const url = "https://lostpets.onrender.com";
 const MAPKEY = "pk.58d33aa8a8d98aab3cf1c2140e1014e3"
 
-
-// const params = useParams()
-//   const stringCoords = params.ubication
-
-//   const lat = parseFloat(stringCoords.split("&")[0]);
-//   const lng = parseFloat(stringCoords.split("&")[1]);
-
-//   // Setear valor de URL en ATOM
-//   const setQueryValue = useSetRecoilState(UserLocationAtom)
-//   useEffect(() => { setQueryValue({ lat, lng }) }, [params])
-
-//   // Pedirle el resultado al Selector que está asociado al Atom que acabamos de modificar 
-//   const perros = useRecoilValue(traerPerrosSelector)
-//   return perros
-
-
 export function EditarPublicacion() {
   const [coords, setCoords] = useState({ previousUbicatioLat: "0", previousUbicatioLon: "0" });
-
+  const [cambio, setcambio] = useRecoilState(cambioAtom)
+  const [dataMyPet, setDataMyPet] = useRecoilState(datosMyPet)
   const navigate = useNavigate();
-  const userUbication: any = {};
-  userUbication.lat = sessionStorage.getItem("lat"); // TRAER DESDE ATOM
-  userUbication.lng = sessionStorage.getItem("lng");
-  const hayUbicacion = userUbication.lat != "";
 
+  const { objectID, name, ubication, picture_url } = dataMyPet
 
-  const petData = history.state.usr // TRAER DATOS DEL PERRO DE ALGUN LADO
-  console.log("LA DATA DEL PET", petData)
-  const { name, ubication, picture, petId } = petData;
-  const [data, setData] = useRecoilState(userDataAtom);
-  const {userId}= data
+  const [userData, setUserData] = useRecoilState(userDataAtom);
+  const { userId } = userData
+
   const [showPetImg, setShowPetImg] = useState(true)
   const datosNewPet: any = {};
 
@@ -57,19 +38,13 @@ export function EditarPublicacion() {
     previousUbicatioLat: "0",
     previousUbicatioLon: "0"
   }
-  fetch(
-
-    `https://us1.locationiq.com/v1/search?key=${MAPKEY}&q=${ubicationURL}%2C%20argentina&format=json`
-    // %2C = ,
-    // %20 = spc
-  )
+  fetch(`https://us1.locationiq.com/v1/search?key=${MAPKEY}&q=${ubicationURL}%2C%20argentina&format=json`)
     .then((res) => {
       return res.json();
     })
     .then((data) => {
       previousUbicationPetCoords.previousUbicatioLat = (data[0].lat)
       previousUbicationPetCoords.previousUbicatioLon = (data[0].lon)
-      console.log({ previousUbicationPetCoords })
       setCoords(previousUbicationPetCoords)
     })
 
@@ -86,7 +61,6 @@ export function EditarPublicacion() {
       reader.readAsDataURL(archivo);
       reader.onload = function () {
         var base64 = reader.result;
-        // console.log(base64);
         datosNewPet.imagen_data = base64;
       };
     });
@@ -99,7 +73,6 @@ export function EditarPublicacion() {
 
   function submittedPet(e) {
     e.preventDefault();
-    console.log("updatedddddddddddd")
 
     datosNewPet.userId = userId;
     datosNewPet.name = (e.target["pet-name"].value).toUpperCase();
@@ -117,12 +90,7 @@ export function EditarPublicacion() {
         .replace('Ó', '%C3%93')
         .replace('Ú', '%C3%9A')
 
-    fetch(
-
-      `https://us1.locationiq.com/v1/search?key=${MAPKEY}&q=${PLACE}%2C%20argentina&format=json`
-      // %2C = ,
-      // %20 = spc
-    )
+    fetch(`https://us1.locationiq.com/v1/search?key=${MAPKEY}&q=${PLACE}%2C%20argentina&format=json`)
       .then((res) => {
         return res.json();
       })
@@ -141,7 +109,7 @@ export function EditarPublicacion() {
 
 
 
-        fetch(url + "/edit-pet/" + petId, {
+        fetch(url + "/edit-pet/" + objectID, {
           method: "post",
           headers: {
             "content-type": "application/json",
@@ -152,17 +120,11 @@ export function EditarPublicacion() {
             return res.json();
           })
           .then((data) => {
-            console.log("Se editó", data);
+            setcambio(Math.random())
+            navigate("/mis-mascotas-reportadas", { replace: true })
           });
 
 
-        if (hayUbicacion) {
-          console.log("ya hay ubicacion, se redirecciona a pets");
-          navigate("/pets", { replace: true });
-        } else {
-          console.log("NO hay ubicacion, se redirecciona a /");
-          navigate("/", { replace: true });
-        }
       })
 
 
@@ -179,7 +141,7 @@ export function EditarPublicacion() {
 
         <MyInput label="Nombre de tu mascota" name="pet-name" defaultValue={name}></MyInput>
 
-        <img src={picture} style={{ display: showPetImg ? "grid" : "none" }} className={css.pet_image} />
+        <img src={picture_url} style={{ display: showPetImg ? "grid" : "none" }} className={css.pet_image} />
 
         <div className={css["dropzone"]}> Arrastra tu imagen aquí
           <div>

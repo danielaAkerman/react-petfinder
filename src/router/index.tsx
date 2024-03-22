@@ -18,9 +18,9 @@ function AppRoutes() {
       <Route path="/" element={<Layout />}>
         <Route index element={<UbicationPage />} />
         <Route path="ubication" element={<UbicationPage />} />
-        <Route path="pets/:ubication" element={<LostPetsNearMe />} />
+        <Route path="pets" element={<LostPetsNearMe />} />
         <Route path="crear-cuenta" element={<CrearCuenta />} />
-        <Route path="editar-publicacion/:petdata" element={<EditarPublicacion />} />
+        <Route path="editar-publicacion" element={<EditarPublicacion />} />
         <Route path="iniciar-sesion" element={<IniciarSesion />} />
         <Route path="mis-mascotas-reportadas" element={<MisMascotasReportadas />} />
         <Route path="publicar-mascota" element={<PublicarMascota />} />

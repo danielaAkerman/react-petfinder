@@ -1,12 +1,41 @@
 import React, { useEffect } from "react";
-import { useRecoilValue } from "recoil";
-import { myReportedPetsSelector } from "../../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { LoggedAtom, myReportedPetsSelector, userDataAtom } from "../../atoms";
 import { MyLostPetItem } from "../../components/MyLostPetItem";
 import css from "./index.css";
 import { useNavigate } from "react-router-dom";
 
+const url = "https://lostpets.onrender.com";
+
 export function MisMascotasReportadas() {
   const navigate = useNavigate()
+
+
+  const [userData, setUserData] = useRecoilState(userDataAtom)
+  const [logged, setLogged] = useRecoilState(LoggedAtom)
+
+  const userToken = localStorage.getItem("token");
+
+  if (userData.fullname == "" && userToken) {
+
+    console.log("hay token")
+    fetch(url + "/init/" + userToken, {})
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        const { id, email, fullname } = data;
+
+        const userData: any = {};
+
+        userData.userId = id;
+        userData.email = email;
+        userData.fullname = fullname;
+        userData.token = userToken;
+        setUserData(userData);
+        setLogged(true)
+      });
+  }
 
   const misMascotasReportadas = useRecoilValue(myReportedPetsSelector)
   function irAPublicarMascota() {

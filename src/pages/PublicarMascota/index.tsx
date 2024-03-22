@@ -9,10 +9,36 @@ export function PublicarMascota() {
 
   const navigate = useNavigate();
   const [logged, setLogged] = useRecoilState(LoggedAtom)
-  const [data, setData] = useRecoilState(userDataAtom)
   const [cambio, setcambio] = useRecoilState(cambioAtom)
+  const [userData, setUserData] = useRecoilState(userDataAtom)
 
-  const { userId } = data
+  const { userId } = userData
+
+
+  const userToken = localStorage.getItem("token");
+
+  if (userData.fullname == "" && userToken) {
+
+    console.log("hay token")
+    fetch(url + "/init/" + userToken, {})
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        const { id, email, fullname } = data;
+
+        const userData: any = {};
+
+        userData.userId = id;
+        userData.email = email;
+        userData.fullname = fullname;
+        userData.token = userToken;
+        setUserData(userData);
+        setLogged(true)
+      });
+  }
+
+
 
   const datosNewPet: any = {};
 
@@ -28,6 +54,7 @@ export function PublicarMascota() {
   };
   function submittedPet(e) {
     e.preventDefault();
+    navigate("/mis-mascotas-reportadas", { replace: true })
 
     datosNewPet.userId = userId;
     datosNewPet.name = (e.target.name.value).toUpperCase();
@@ -73,7 +100,7 @@ export function PublicarMascota() {
           })
           .then((data) => {
             setcambio(Math.random())
-            navigate("/mis-mascotas-reportadas", { replace: true })
+            // navigate("/mis-mascotas-reportadas", { replace: true })
           });
       })
   }

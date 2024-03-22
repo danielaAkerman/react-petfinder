@@ -1,15 +1,9 @@
 import React from "react";
-// import { ubicationState } from "../../atoms";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { MainButton } from "../../ui/MyButton";
 import css from "./index.css";
-import { HayUserLocationAtom, LoggedAtom, userDataAtom } from "../../atoms"
-// import { init } from "../../api";
-
-// const search = require("../../assets/img/search.jpeg");
+import { HayUserLocationAtom, LoggedAtom, UserLocationAtom, userDataAtom } from "../../atoms"
 
 const url = "https://lostpets.onrender.com";
 
@@ -17,17 +11,16 @@ function UbicationPage() {
 
   const navigate = useNavigate();
 
+  const [userLocation, setUserLocation] = useRecoilState(UserLocationAtom)
   const [hayLocation, setHayLocation] = useRecoilState(HayUserLocationAtom)
   const [userData, setUserData] = useRecoilState(userDataAtom)
   const [logged, setLogged] = useRecoilState(LoggedAtom)
-
-  // VER SI HAY TOKEN PARA LOGUEAR
 
   const userToken = localStorage.getItem("token");
 
   if (userData.fullname == "" && userToken) {
 
-    // init()
+    console.log("hay token")
     fetch(url + "/init/" + userToken, {})
       .then((res) => {
         return res.json();
@@ -55,7 +48,8 @@ function UbicationPage() {
       };
 
       setHayLocation(true)
-      navigate("/pets/" + ubication.lat + "&" + ubication.lng, { replace: true });
+      setUserLocation(ubication)
+      navigate("/pets", { replace: true });
     })
   }
 

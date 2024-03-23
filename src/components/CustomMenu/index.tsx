@@ -31,7 +31,7 @@ export function CustomMenu() {
     localStorage.removeItem("token");
 
     hayUbication ?
-      navigate("/pets/" + ubication.lat + "&" + ubication.lng, { replace: true })
+      navigate("/pets", { replace: true })
       :
       navigate("/", { replace: true })
 
@@ -44,7 +44,7 @@ export function CustomMenu() {
       {logged ?
 
         <div className={css.root}>
-          <span className={css["header-item-hello"]}>HOLA {data.fullname}</span>
+          <span className={css["header-item-hello"]}>Hola {data.fullname}</span>
           <span onClick={irMisDatos} className={css["header-item"]}>Mis datos</span>
           <span onClick={irMisMascotasReportadas} className={css["header-item"]}>Mis mascotas reportadas</span>
           <span onClick={irReportarMascota} className={css["header-item"]}>Resportar mascota</span>

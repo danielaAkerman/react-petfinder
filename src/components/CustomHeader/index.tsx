@@ -4,6 +4,7 @@ import { CustomMenu } from "../CustomMenu";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { UserLocationAtom } from "../../atoms";
+import pet from "../../assets/img/perro2.png"
 
 
 export function CustomHeader() {
@@ -23,7 +24,9 @@ export function CustomHeader() {
   }
   return (
     <div className={css.root}>
-      <div onClick={irInicio} className={css.logo}>LOGO</div>
+      <div onClick={irInicio} className={css.logo}>
+        <img className={css.logopet} src={pet}></img>
+      </div>
       <div className="items">
         <CustomMenu />
       </div>

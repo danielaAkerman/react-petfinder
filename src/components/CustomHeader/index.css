@@ -1,15 +1,26 @@
 .root {
-  background-color: salmon;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  border-bottom: solid 1px #676f58;
+  /* border-bottom-left-radius: 12%; */
+  /* border-bottom-right-radius: 16%; */
+  margin-left: 50px;
+  margin-right: 50px;
+  width: fit-content;
+
+
 }
 
 .logo {
-  cursor: pointer
+  cursor: pointer;
 }
 
 .logo:hover {
   text-decoration: underline;
+}
+
+.logopet{
+height: 100px;
 }

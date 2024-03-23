@@ -3,6 +3,8 @@ import { useRecoilState } from "recoil";
 import css from "./index.css";
 import { useNavigate } from "react-router-dom";
 import { HayUserLocationAtom, LoggedAtom, UserLocationAtom, userDataAtom } from "../../atoms";
+import { MyInput } from "../../ui/MyInput";
+import { LargeButton, MainButton } from "../../ui/MyButton";
 
 const url = "https://lostpets.onrender.com";
 
@@ -69,19 +71,14 @@ export function IniciarSesion() {
 
   return (
     <div className={css.root}>
-      <h1>Iniciar Sesión</h1>
+      <h1>Iniciá Sesión</h1>
       <form onSubmit={submitIniciarSesion}>
-        <label >
-          <span>Email:</span>
-          <input name="email" placeholder="alguien@gmail.com"></input>
-        </label>
 
-        <label >
-          <span>Contraseña:</span>
-          <input name="password"></input>
-        </label>
+        <MyInput name="email" label="Email:" />
+        <MyInput name="password" label="Contraseña:" />
 
-        <button>Ingresar</button>
+        <LargeButton type="submit">Ingresar</LargeButton>
+
         <span className="advertencia"></span>
       </form>
       <span>¿Aún no tenés cuenta?<span onClick={irACrearCuenta}> Registrate</span></span>

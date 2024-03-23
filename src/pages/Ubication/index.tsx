@@ -55,14 +55,10 @@ function UbicationPage() {
 
   return (
     <div className={css.root}>
-      <div className="img-container">
-        {/* <img src={search} className="img-fluid" /> */}
-      </div>
       <p className="">Encontrá y reportá mascotas cerca de tu ubicación</p>
       <div onClick={aceptar}>
         <MainButton>Dar mi ubicación</MainButton>
       </div>
-
     </div>
   );
 }

@@ -1,0 +1,12 @@
+.link {
+  padding-left: 4px;
+  padding-right: 9px;
+}
+
+.link:hover {
+  cursor: pointer;
+  color: antiquewhite;
+  background-color: #676f588b;
+  transition: 2s;
+  border-radius: 20% 10% 65% 10% / 38% 9% 39% 13%;
+}

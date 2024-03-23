@@ -3,6 +3,9 @@ import { useRecoilState } from "recoil";
 import css from "./index.css";
 import { useNavigate } from "react-router-dom";
 import { userDataAtom, LoggedAtom, HayUserLocationAtom, UserLocationAtom } from "../../atoms"
+import { MyInput } from "../../ui/MyInput";
+import { LargeButton, MainButton } from "../../ui/MyButton";
+import { CustomLink } from "../../ui/CustomLink";
 
 
 const url = "https://lostpets.onrender.com";
@@ -54,7 +57,7 @@ export function CrearCuenta() {
 
           setUserData(userData);
           setLogged(true)
-          
+
           localStorage.setItem("token", userData.token.toString());
           console.log("se guarda token", userData.token);
 
@@ -82,32 +85,19 @@ export function CrearCuenta() {
 
       <h1>Registrate</h1>
 
-      <form onSubmit={submitCrearCuenta}>
-        <label >
-          <span>Nombre:</span>
-          <input name="nombre" placeholder="Soy Lucía"></input>
-        </label>
+      <form onSubmit={submitCrearCuenta} className={css.form}>
+        <MyInput name="nombre" label="Nombre:" />
+        <MyInput name="email" label="Email:" />
+        <MyInput name="password" label="Contraseña:" />
+        <MyInput name="password2" label="Repetir contraseña:" />
 
-        <label >
-          <span>Email:</span>
-          <input name="email" placeholder="alguien@gmail.com"></input>
-        </label>
-
-        <label >
-          <span>Contraseña:</span>
-          <input name="password"></input>
-        </label>
-
-        <label >
-          <span>Repetir contraseña:</span>
-          <input name="password2"></input>
-        </label>
-
-        <button>Ingresar</button>
+        <LargeButton>Ingresar</LargeButton>
         <span className="advertencia"></span>
-
       </form>
-      <span>¿Ya tenés cuenta?<span onClick={irAIniciarSesion}> Iniciá sesión</span></span>
+      {/* <span>
+        ¿Ya tenés cuenta?  */}
+        <CustomLink label="¿Ya tenés cuenta? " funcion={irAIniciarSesion}>Iniciá sesión</CustomLink>
+        {/* </span> */}
 
     </div>
   );

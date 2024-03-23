@@ -1,20 +1,20 @@
 .root {
-  border: solid 2px salmon;
-  border-radius: 50px;
-}
-
-.name {
-  color: brown;
-  text-align: center;
-}
-
-.ubication {
-  color: darkcyan;
-  text-align: center;
-}
-
-.picture {
-  max-width: 244px;
-  height: auto;
-  border-radius: 50px;
-}
+    border: solid 2px salmon;
+    border-radius: 50px;
+  }
+  
+  .name {
+    color: brown;
+    text-align: center;
+  }
+  
+  .ubication {
+    color: darkcyan;
+    text-align: center;
+  }
+  
+  .picture {
+    max-width: 244px;
+    height: auto;
+    border-radius: 50px;
+  }

@@ -3,6 +3,8 @@ import { useRecoilState } from "recoil";
 import css from "./index.css";
 import { useNavigate } from "react-router-dom";
 import { HayUserLocationAtom, LoggedAtom, userDataAtom, UserLocationAtom, cambioAtom } from "../../atoms";
+import { MyInput } from "../../ui/MyInput";
+import { LargeButton, MainButton } from "../../ui/MyButton";
 const url = "https://lostpets.onrender.com";
 
 export function PublicarMascota() {
@@ -111,12 +113,10 @@ export function PublicarMascota() {
 
       <form onSubmit={submittedPet} className={css.form}>
 
-        <label>
-          <span>Nombre de tu mascota:</span>
-          <input name="name" />
-        </label>
+        <MyInput name="name" label="Nombre de tu mascota:" />
 
         <div className={css["dropzone"]}>
+          <span>Adjuntar imagen:</span>
           <input
             type="file"
             multiple
@@ -125,16 +125,13 @@ export function PublicarMascota() {
           />
         </div>
 
-        <label>
-          <span>Ciudad o barrio:</span>
-          <input name="ubication" />
-        </label>
+        <MyInput name="ubication" label="Ciudad:" />
 
         <div className={css.map}>
           <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1MITVPExrphDfLkJqao9bzZtL7BO7Fv4&ehbc=2E312F" width="100%" height="344"></iframe>
         </div>
 
-        <button type="submit">Publicar</button>
+        <LargeButton type="submit">Publicar</LargeButton>
       </form>
     </div>
   );

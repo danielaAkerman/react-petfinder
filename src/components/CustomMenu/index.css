@@ -1,7 +1,6 @@
 .root {
   display: flex;
   flex-direction: row;
-  gap: 100px;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -13,4 +12,21 @@
 
 .header-item:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 888px) {
+  .root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: #ebe8e3;
+    /* border: solid 3px salmon; */
+    padding: 20px;
+    width: 40vw;
+    border-radius: 32% 0% 0% 39% / 22% 0% 0% 38%  ;
+    border-left: solid 1px #676f58;
+    border-bottom: solid 2px #676f58;
+  }
 }

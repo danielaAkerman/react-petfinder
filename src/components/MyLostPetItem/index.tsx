@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import css from "./index.css";
-import { ModalLostPet } from "../ModalLostPet";
 import { ShowModalLostPet, DataModalLostPet, datosMyPet, cambioAtom } from "../../atoms";
 import { useRecoilState } from "recoil";
-import { CustomButton } from "../../ui/CustomButton";
 import { useNavigate } from "react-router-dom";
+import { LargeButton, MainButton } from "../../ui/MyButton";
+import { ModalLostPet } from "../ModalLostPet";
 const url = "https://lostpets.onrender.com";
 
 type MyLostPetItemProps = {
@@ -12,11 +12,12 @@ type MyLostPetItemProps = {
 }
 
 export function MyLostPetItem(props: MyLostPetItemProps) {
-  const { name, ubication, picture_url, objectID } = props
+  const { name, ubication, picture_url, objectID, owner } = props
   const [showModal, setShowModal] = useRecoilState(ShowModalLostPet)
   const [dataModal, setDataModal] = useRecoilState(DataModalLostPet)
   const [dataMyPet, setDataMyPet] = useRecoilState(datosMyPet)
   const [cambio, setcambio] = useRecoilState(cambioAtom)
+  
   const navigate = useNavigate();
 
   function editarPublicacion() {
@@ -53,13 +54,32 @@ export function MyLostPetItem(props: MyLostPetItemProps) {
 
   }
 
+  function mostrarModal() {
+    setShowModal(true)
+    setDataModal({ name, objectID })
+  }
+
   return (
     <div className={css.root}>
-      <img src={picture_url} className={css.picture}></img>
-      <h4 className={css.name}>Nombre: {name}</h4>
-      <h6 className={css.ubication}>Ubicación: {ubication}</h6>
-      <CustomButton name={name} objectID={objectID} funcion={editarPublicacion} label={`Editar Publicación`} />
-      <CustomButton name={name} objectID={objectID} funcion={eliminarMascota} label={`Eliminar Publicación`} />
+      <div className={css.picture_container} style={{ backgroundImage: `url(${picture_url})` }}>
+        <img src={picture_url} className={css.picture}></img>
+      </div>
+      <div className={css.text}>
+        <div className={css.name}>{name}</div>
+        <div className={css.ubication}>{ubication}</div>
+
+        {owner ?
+          <div>
+            <MainButton funcion={editarPublicacion}>Editar Publicación</MainButton>
+            <MainButton funcion={eliminarMascota}>Eliminar Publicación</MainButton>
+          </div>
+          :
+          <div>
+            <MainButton funcion={mostrarModal}>Viste a {name}?</MainButton>
+          </div>
+        }
+
+      </div>
     </div>
   );
 }

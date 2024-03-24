@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { HayUserLocationAtom, LoggedAtom, UserLocationAtom, userDataAtom } from "../../atoms";
 import { MyInput } from "../../ui/MyInput";
 import { LargeButton, MainButton } from "../../ui/MyButton";
+import { CustomLink } from "../../ui/CustomLink";
 
 const url = "https://lostpets.onrender.com";
 
@@ -56,7 +57,7 @@ export function IniciarSesion() {
             hayLocation
 
               ?
-              navigate("/pets/" + ubication.lat + "&" + ubication.lng, { replace: true })
+              navigate("/pets", { replace: true })
               :
               navigate("/", { replace: true })
 
@@ -81,7 +82,9 @@ export function IniciarSesion() {
 
         <span className="advertencia"></span>
       </form>
-      <span>¿Aún no tenés cuenta?<span onClick={irACrearCuenta}> Registrate</span></span>
+      <CustomLink label="¿Aún no tenés cuenta? " funcion={irACrearCuenta}>Registrate</CustomLink>
+
+      {/* <span>¿Aún no tenés cuenta?<span onClick={irACrearCuenta}> Registrate</span></span> */}
     </div>
   );
 }

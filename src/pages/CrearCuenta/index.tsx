@@ -63,7 +63,7 @@ export function CrearCuenta() {
 
           if (hayUbicacion) {
             console.log("ya hay ubicacion, se redirecciona a pets");
-            navigate("/pets/" + ubicacion.lat + "&" + ubicacion.lng, { replace: true });
+            navigate("/pets", { replace: true });
 
           } else {
             console.log("NO hay ubicacion, se redirecciona a /");
@@ -96,8 +96,8 @@ export function CrearCuenta() {
       </form>
       {/* <span>
         ¿Ya tenés cuenta?  */}
-        <CustomLink label="¿Ya tenés cuenta? " funcion={irAIniciarSesion}>Iniciá sesión</CustomLink>
-        {/* </span> */}
+      <CustomLink label="¿Ya tenés cuenta? " funcion={irAIniciarSesion}>Iniciá sesión</CustomLink>
+      {/* </span> */}
 
     </div>
   );

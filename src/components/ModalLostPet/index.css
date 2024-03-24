@@ -1,29 +1,43 @@
 .root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background {
   position: absolute;
-  background-color: pink;
+  top: 0;
+  background-color: #676f58;
   width: 100%;
   height: 100%;
   opacity: .7;
   top: 0;
   left: 0;
+  z-index: 0;
 }
 
 .content {
-  background-color: #fff;
-  width: 50%;
-  min-width: 300px;
+  background-color: #ebe8e3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  min-width: 200px;
+  max-width: 830px;
   height: 344px;
-  position: absolute;
-  top: 344px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: solid 2px salmon;
-  border-radius: 50px;
+  position: fixed;
+  top: 144px;
+  border-radius: 5px;
+  z-index: 1;
+  padding: 10px;
+
 }
 
 .form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: fit-content;
 }
 
 .label {
@@ -31,5 +45,19 @@
 }
 
 .xButtonContainer {
-  align-items: end;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 90%;
+  min-width: 200px;
 }
+
+.xButton {
+  height: 44px;
+  width: 44px;
+  cursor: pointer;
+}
+
+/* 676f58 */
+/* bdc6b5 */
+/* ebe8e3 */

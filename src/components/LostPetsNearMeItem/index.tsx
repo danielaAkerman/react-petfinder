@@ -25,7 +25,14 @@ export function LostPetsNearMeItem(props: LostPetsNearMeItemProps) {
       <img src={picture_url} className={css.picture}></img>
       <h4 className={css.name}>Nombre: {name}</h4>
       <h6 className={css.ubication}>Ubicación: {ubication}</h6>
+
+
+
       <CustomButton name={name} objectID={objectID} funcion={mostrarModal} label={`¿Viste a ${name}?`} />
+    
+    
     </div>
   );
 }
+
+// EN DESUSO

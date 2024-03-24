@@ -5,7 +5,8 @@
   border-radius: 5px;
   padding: 10px;
   border: none;
-  margin: 20px auto;
+  margin: 20px auto auto auto;
+  display: block;
 }
 
 .root:hover {

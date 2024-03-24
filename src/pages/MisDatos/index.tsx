@@ -2,6 +2,8 @@ import React from "react";
 import css from "./index.css";
 import { LoggedAtom, userDataAtom } from "../../atoms";
 import { useRecoilState } from "recoil";
+import { MyInput } from "../../ui/MyInput";
+import { LargeButton, MainButton } from "../../ui/MyButton";
 const url = "https://lostpets.onrender.com";
 
 export function MisDatos() {
@@ -77,27 +79,13 @@ export function MisDatos() {
       <h1>Mis Datos</h1>
 
       <form onSubmit={updateDatos} className={css.form}>
-        <label >
-          <span>Nombre:</span>
-          <input name="nombre" defaultValue={fullname} placeholder={fullname}></input>
-        </label>
 
-        <label >
-          <span>Email:</span>
-          <input name="email" defaultValue={email} placeholder={email}></input>
-        </label>
+        <MyInput name="nombre" label="Nombre:" defaultValue={fullname} placeholder={fullname} />
+        <MyInput name="email" label="Email:" defaultValue={email} placeholder={email} />
+        <MyInput name="password" label="Cambiar contraseña:" />
+        <MyInput name="password2" label="Repetir contraseña:" />
 
-        <label >
-          <span>Cambiar contraseña:</span>
-          <input name="password"></input>
-        </label>
-
-        <label >
-          <span>Repetir contraseña:</span>
-          <input name="password2"></input>
-        </label>
-
-        <button>Actualizar datos</button>
+        <LargeButton>Actualizar datos</LargeButton>
         <span className="advertencia"></span>
 
       </form>

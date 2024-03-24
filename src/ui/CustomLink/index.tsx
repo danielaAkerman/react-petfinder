@@ -4,7 +4,7 @@ import css from "./index.css";
 // import { useRecoilState } from "recoil";
 
 type CustomLinkProps = {
-  children, label: string;
+  children, label?: string;
   funcion: () => any
 }
 

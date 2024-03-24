@@ -4,6 +4,7 @@ import { LoggedAtom, myReportedPetsSelector, userDataAtom } from "../../atoms";
 import { MyLostPetItem } from "../../components/MyLostPetItem";
 import css from "./index.css";
 import { useNavigate } from "react-router-dom";
+import { CustomLink } from "../../ui/CustomLink";
 
 const url = "https://lostpets.onrender.com";
 
@@ -65,11 +66,9 @@ export function MisMascotasReportadas() {
         </div>
         :
         <div>
-
           <h1>No hay mascotas reportadas</h1>
-          <span>Para reportar una mascota perdida hacé <span onClick={irAPublicarMascota}>click aquí</span></span>
+          <CustomLink label="Para reportar una mascota perdida hacé " funcion={irAPublicarMascota}>click aquí</CustomLink>
         </div>
-
       }
     </div>
   );

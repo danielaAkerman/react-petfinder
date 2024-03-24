@@ -42,6 +42,13 @@ export const ShowModalLostPet = atom({
   default: false,
 });
 
+// MOSTRAR BURGER MENU
+
+export const ShowBurgerMenuAtom = atom({
+  key: "ShowBurgerMenu",
+  default: false,
+});
+
 
 // DATOS MODAL LOSTPETEITEM
 

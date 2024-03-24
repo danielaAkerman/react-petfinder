@@ -9,7 +9,7 @@ type CustomButtonProps = {
 }
 
 export function CustomButton(props: CustomButtonProps) {
-  const { name, objectID , funcion, label} = props
+  const {  funcion, label} = props
 
   return (
     <div className={css.root}>

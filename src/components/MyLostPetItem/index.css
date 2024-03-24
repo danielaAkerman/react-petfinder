@@ -1,20 +1,54 @@
 .root {
-  border: solid 2px salmon;
-  border-radius: 50px;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  height: min-content;
 }
 
 .name {
-  color: brown;
-  text-align: center;
+  font-size: 24px;
 }
 
 .ubication {
+  font-size: 20px;
   color: darkcyan;
-  text-align: center;
+}
+
+.name,
+.ubication {
+  margin: 10px;
+}
+
+.picture_container {
+  width: 200px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .picture {
-  max-width: 244px;
+  width: 100%;
   height: auto;
-  border-radius: 50px;
 }
+
+.text {
+  height: min-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 676f58
+bdc6b5 */
+/* 
+@media (max-width: 888px) {
+  .picture {
+
+    max-width: 200px;
+    height: auto;
+  }
+} */

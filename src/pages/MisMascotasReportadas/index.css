@@ -2,8 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
 }
-.root{
+
+.root {
   display: flex;
   flex-direction: column;
   align-items: center;

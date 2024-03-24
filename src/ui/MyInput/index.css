@@ -12,7 +12,7 @@
   background-color: #a3ab94;
   height: 21px;
   width: calc(100%-4px);
-  min-width: 350px;
+  min-width: 340px;
 }
 
 .input:focus {

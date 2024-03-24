@@ -3,6 +3,9 @@ import css from "./index.css";
 import { DataModalLostPet, ShowModalLostPet } from "../../atoms";
 import { useRecoilState } from "recoil";
 import { enviarReporte } from "../../api";
+import { MyInput } from "../../ui/MyInput";
+import { LargeButton, MainButton } from "../../ui/MyButton";
+import close from "../../assets/img/close.png"
 
 export function ModalLostPet() {
 
@@ -31,45 +34,22 @@ export function ModalLostPet() {
   }
 
 
-  return (<div>
+  return (<div className={css.root}>
 
-    <div className={css.root}></div>
+    <div className={css.background}></div>
 
     <div className={css.content}>
       <div className={css.xButtonContainer}>
-
-        <button onClick={ocultarModal}>X</button>
+        <img src={close} onClick={ocultarModal} className={css.xButton}></img>
+        {/* <button onClick={ocultarModal}>X</button> */}
       </div>
 
       AYUDANOS A ENCONTRAR A {name}
-
-
       <form className={css.form} onSubmit={submittedForm}>
-
-        <label className={css.label}>
-          <span>Tu nombre:</span>
-
-          <input name="nombre" />
-        </label>
-
-
-        <label className={css.label}>
-          <span>Tu teléfono:</span>
-
-          <input name="telefono" />
-        </label>
-
-
-        <label className={css.label}>
-          <span>¿Dónde viste a {name}?</span>
-
-          <textarea name="mensaje" />
-        </label>
-
-
-        <button>ENVIAR DATOS</button>
-
-
+        <MyInput name="nombre" label="Tu nombre:" />
+        <MyInput name="telefono" label="Tu teléfono:" />
+        <MyInput name="mensaje" label="¿Dónde viste a " petName={name} textarea={true} />
+        <LargeButton type="submit" >Enviar datos</LargeButton>
       </form>
     </div>
   </div>

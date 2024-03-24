@@ -1,8 +1,9 @@
 import React from "react";
 import css from "./index.css";
-import { HayUserLocationAtom, LoggedAtom, UserLocationAtom, userDataAtom } from "../../atoms";
+import { HayUserLocationAtom, LoggedAtom, UserLocationAtom, userDataAtom, ShowBurgerMenuAtom } from "../../atoms";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
+import { CustomLink } from "../../ui/CustomLink";
 
 export function CustomMenu() {
 
@@ -10,22 +11,24 @@ export function CustomMenu() {
 
   const [logged, setLogged] = useRecoilState(LoggedAtom)
   const [data, setData] = useRecoilState(userDataAtom)
-  const [ubication, setUbication] = useRecoilState(UserLocationAtom)
+  // const [ubication, setUbication] = useRecoilState(UserLocationAtom)
   const [hayUbication, setHayUbication] = useRecoilState(HayUserLocationAtom)
+  const [showBurger, useShowBurger] = useRecoilState(ShowBurgerMenuAtom)
 
 
-  function irMisDatos() { navigate("/mis-datos", { replace: true }) }
+  function irMisDatos() { useShowBurger(false), navigate("/mis-datos", { replace: true }) }
 
-  function irMisMascotasReportadas() { navigate("/mis-mascotas-reportadas", { replace: true }) }
+  function irMisMascotasReportadas() { useShowBurger(false), navigate("/mis-mascotas-reportadas", { replace: true }) }
 
-  function irReportarMascota() { navigate("/publicar-mascota", { replace: true }) }
+  function irReportarMascota() { useShowBurger(false), navigate("/publicar-mascota", { replace: true }) }
 
-  function irCrearCuenta() { navigate("/crear-cuenta", { replace: true }) }
+  function irCrearCuenta() { useShowBurger(false), navigate("/crear-cuenta", { replace: true }) }
 
-  function irIniciarSesion() { navigate("/iniciar-sesion", { replace: true }) }
+  function irIniciarSesion() { useShowBurger(false), navigate("/iniciar-sesion", { replace: true }) }
 
   function irCerrarSesion() {
     setLogged(false)
+    useShowBurger(false)
     setData({ email: "", fullname: "", token: "", userId: "" })
 
     localStorage.removeItem("token");
@@ -45,17 +48,17 @@ export function CustomMenu() {
 
         <div className={css.root}>
           <span className={css["header-item-hello"]}>Hola {data.fullname}</span>
-          <span onClick={irMisDatos} className={css["header-item"]}>Mis datos</span>
-          <span onClick={irMisMascotasReportadas} className={css["header-item"]}>Mis mascotas reportadas</span>
-          <span onClick={irReportarMascota} className={css["header-item"]}>Resportar mascota</span>
-          <span onClick={irCerrarSesion} className={css["header-item"]}>Cerrar sesión</span>
+          <CustomLink funcion={irMisDatos}>Mis datos</CustomLink>
+          <CustomLink funcion={irMisMascotasReportadas}>Mis mascotas reportadas</CustomLink>
+          <CustomLink funcion={irReportarMascota}>Resportar mascota</CustomLink>
+          <CustomLink funcion={irCerrarSesion}>Cerrar sesión</CustomLink>
         </div>
 
         :
 
         <div className={css.root}>
-          <span onClick={irCrearCuenta} className={css["header-item"]}>Crear cuenta</span>
-          <span onClick={irIniciarSesion} className={css["header-item"]}>Iniciar sesión</span>
+          <CustomLink funcion={irCrearCuenta}>Crear cuenta</CustomLink>
+          <CustomLink funcion={irIniciarSesion}>Iniciar sesión</CustomLink>
         </div>
 
       }

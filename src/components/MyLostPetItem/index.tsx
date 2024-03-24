@@ -47,7 +47,6 @@ export function MyLostPetItem(props: MyLostPetItemProps) {
         return res.json();
       })
       .then((data) => {
-        console.log("Mascota Eliminada");
         setcambio(Math.random())
         navigate("/mis-mascotas-reportadas", { replace: true })
       });

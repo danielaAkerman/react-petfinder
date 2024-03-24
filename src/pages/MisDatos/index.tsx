@@ -12,13 +12,11 @@ export function MisDatos() {
   const [userData, setUserData] = useRecoilState(userDataAtom)
   const { email, fullname, token, userId } = userData
 
-  console.log("Inicialmente los valores del user son:", {userData});
-
   const userToken = localStorage.getItem("token");
 
   if (userData.fullname == "" && userToken) {
 
-    console.log("hay token")
+    console.log("hay token, se inicia sesión")
     fetch(url + "/init/" + userToken, {})
       .then((res) => {
         return res.json();

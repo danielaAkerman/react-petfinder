@@ -3,9 +3,36 @@
   flex-direction: column;
   align-items: center;
 }
-.root{
+
+.root {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 90%;
+  margin-bottom: 20px;
+}
 
+.input_img {
+  width: 100%;
+  background-color: #a3ab94;
+  border-radius: 5px;
+  margin-top: 5px;
+  height: 23px;
+
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.picture_container{
+  display: flex;
+}
+
+.pet_image{
+  display: flex;
+  min-width: 340px;
+  max-width: 450px;
 }

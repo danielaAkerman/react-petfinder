@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MyInput } from "../../ui/MyInput";
-import { MainButton } from "../../ui/MyButton";
+import { LargeButton, MainButton } from "../../ui/MyButton";
 import { useRecoilState } from "recoil";
 import { UserLocationAtom, cambioAtom, datosMyPet, userDataAtom } from "../../atoms";
 import css from "./index.css";
@@ -97,17 +97,9 @@ export function EditarPublicacion() {
       .then((data) => {
         const lat = +(data[0].lat)
         const lon = +(data[0].lon)
-        console.log("LAT:", lat, typeof lat, "LON:", lon
-        )
 
         datosNewPet.last_location_lat = lat;
         datosNewPet.last_location_lng = lon;
-
-        console.log("datosNewPet", datosNewPet);
-
-
-
-
 
         fetch(url + "/edit-pet/" + objectID, {
           method: "post",
@@ -123,14 +115,8 @@ export function EditarPublicacion() {
             setcambio(Math.random())
             navigate("/mis-mascotas-reportadas", { replace: true })
           });
-
-
       })
-
-
-
   }
-
 
   return (
     <div className={css.root}>
@@ -139,11 +125,13 @@ export function EditarPublicacion() {
 
       <form onSubmit={submittedPet} className={css.form}>
 
-        <MyInput label="Nombre de tu mascota" name="pet-name" defaultValue={name}></MyInput>
+        <MyInput label="Nombre de tu mascota:" name="pet-name" defaultValue={name}></MyInput>
 
-        <img src={picture_url} style={{ display: showPetImg ? "grid" : "none" }} className={css.pet_image} />
+        <div className={css.picture_container}>
+          <img src={picture_url} style={{ display: showPetImg ? "grid" : "none" }} className={css.pet_image} />
+        </div>
 
-        <div className={css["dropzone"]}> Arrastra tu imagen aquí
+        <div className={css["dropzone"]}> Arrastra tu imagen aquí:
           <div>
             <input
               type="file"
@@ -155,21 +143,15 @@ export function EditarPublicacion() {
         </div>
 
         <div onClick={() => deletePetImage()}>
-          <MainButton type="button">Eliminar esta imagen</MainButton>
+          <LargeButton type="button">Eliminar esta imagen</LargeButton>
         </div>
-
-        <MyInput label="Ciudad o barrio" name="petubication" defaultValue={ubication}></MyInput>
+        <MyInput label="Ciudad:" name="petubication" defaultValue={ubication}></MyInput>
 
         <div className={css.map}>
-
-
-
           <iframe className="iframe" src={mapURL} height="344" width="100%"></iframe>
-
-
         </div>
 
-        <MainButton type="submit">Publicar</MainButton>
+        <LargeButton type="submit">Publicar</LargeButton>
 
       </form>
     </div>

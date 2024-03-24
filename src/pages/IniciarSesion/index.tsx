@@ -36,7 +36,6 @@ export function IniciarSesion() {
       })
       .then((data) => {
         if (data.message) {
-          console.log("ERROR", data);
           const advertencia = document.querySelector(".advertencia")
           advertencia.innerHTML = "Los datos no coinciden"
         } else if (data) {

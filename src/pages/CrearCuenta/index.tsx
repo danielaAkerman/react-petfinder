@@ -47,8 +47,6 @@ export function CrearCuenta() {
           return res.json();
         })
         .then((data) => {
-          console.log("Se autenticó user, HAY TOKEN????", data);
-
           const userData: any = {};
           userData.email = email;
           userData.fullname = nombre;
@@ -59,14 +57,11 @@ export function CrearCuenta() {
           setLogged(true)
 
           localStorage.setItem("token", userData.token.toString());
-          console.log("se guarda token", userData.token);
 
           if (hayUbicacion) {
-            console.log("ya hay ubicacion, se redirecciona a pets");
             navigate("/pets", { replace: true });
 
           } else {
-            console.log("NO hay ubicacion, se redirecciona a /");
             navigate("/", { replace: true });
           }
         });

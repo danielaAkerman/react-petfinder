@@ -1,12 +1,13 @@
 .root {
-  height: 144px;
-  background-color: #676f58;
+  height: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
-  color: #bdc6b5;
-  border-top-left-radius: 50%;
+  /* border-top: solid 1px #676f58; */
+  background: #ebe8e3;
+  margin-left: 50px;
+  margin-right: 50px;
 }

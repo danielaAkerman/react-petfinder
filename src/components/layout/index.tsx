@@ -13,8 +13,8 @@ function Layout() {
         <Suspense fallback={<Waiting />}>
           <Outlet />
         </Suspense>
-      </div>
       <MyFooter />
+      </div>
     </div>
   );
 }

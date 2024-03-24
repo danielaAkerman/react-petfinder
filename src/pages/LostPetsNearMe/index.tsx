@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import css from "./index.css";
 import { usePerrosCerca } from "../../hooks";
 import { LostPetsNearMeItem } from "../../components/LostPetsNearMeItem";
 import { ModalLostPet } from "../../components/ModalLostPet";
-import { LoggedAtom, ShowModalLostPet, UserLocationAtom } from "../../atoms";
+import { HayUserLocationAtom, LoggedAtom, ShowModalLostPet, UserLocationAtom } from "../../atoms";
 import { useNavigate } from "react-router-dom";
 import { MyLostPetItem } from "../../components/MyLostPetItem";
 import { CustomLink } from "../../ui/CustomLink";

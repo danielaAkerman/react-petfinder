@@ -50,7 +50,7 @@ export function CustomMenu() {
           <span className={css["header-item-hello"]}>Hola {data.fullname}</span>
           <CustomLink funcion={irMisDatos}>Mis datos</CustomLink>
           <CustomLink funcion={irMisMascotasReportadas}>Mis mascotas reportadas</CustomLink>
-          <CustomLink funcion={irReportarMascota}>Resportar mascota</CustomLink>
+          <CustomLink funcion={irReportarMascota}>Reportar mascota</CustomLink>
           <CustomLink funcion={irCerrarSesion}>Cerrar sesión</CustomLink>
         </div>
 

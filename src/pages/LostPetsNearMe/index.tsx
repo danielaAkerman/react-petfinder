@@ -1,15 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useRecoilState } from "recoil";
 import css from "./index.css";
 import { usePerrosCerca } from "../../hooks";
-import { LostPetsNearMeItem } from "../../components/LostPetsNearMeItem";
 import { ModalLostPet } from "../../components/ModalLostPet";
-import { HayUserLocationAtom, LoggedAtom, ShowModalLostPet, UserLocationAtom } from "../../atoms";
+import { LoggedAtom, ShowModalLostPet } from "../../atoms";
 import { useNavigate } from "react-router-dom";
 import { MyLostPetItem } from "../../components/MyLostPetItem";
 import { CustomLink } from "../../ui/CustomLink";
-
-
 
 export function LostPetsNearMe() {
   const navigate = useNavigate()
@@ -27,11 +24,9 @@ export function LostPetsNearMe() {
     }
   }
 
-
   return (
     <div>
       {mascotasCercanas[0] ?
-
 
         <div className={css.root}>
           <h1>Mascotas perdidas cerca tuyo</h1>

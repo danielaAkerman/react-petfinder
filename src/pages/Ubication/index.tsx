@@ -64,5 +64,3 @@ function UbicationPage() {
 }
 
 export { UbicationPage };
-
-// El boton dispara evento: obtengo locación, la mando al state y navego a pag siguiente

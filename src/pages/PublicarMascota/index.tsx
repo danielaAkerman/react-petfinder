@@ -2,7 +2,7 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import css from "./index.css";
 import { useNavigate } from "react-router-dom";
-import { HayUserLocationAtom, LoggedAtom, userDataAtom, UserLocationAtom, cambioAtom } from "../../atoms";
+import { LoggedAtom, userDataAtom, cambioAtom } from "../../atoms";
 import { MyInput } from "../../ui/MyInput";
 import { LargeButton, MainButton } from "../../ui/MyButton";
 const url = "https://lostpets.onrender.com";
@@ -15,7 +15,6 @@ export function PublicarMascota() {
   const [userData, setUserData] = useRecoilState(userDataAtom)
 
   const { userId } = userData
-
 
   const userToken = localStorage.getItem("token");
 
@@ -75,10 +74,7 @@ export function PublicarMascota() {
         .replace('Ú', '%C3%9A')
 
     fetch(
-
       `https://us1.locationiq.com/v1/search?key=${MAPKEY}&q=${PLACE}%2C%20argentina&format=json`
-      // %2C = ,
-      // %20 = spc
     )
       .then((res) => {
         return res.json();
@@ -102,7 +98,6 @@ export function PublicarMascota() {
           })
           .then((data) => {
             setcambio(Math.random())
-            // navigate("/mis-mascotas-reportadas", { replace: true })
           });
       })
   }

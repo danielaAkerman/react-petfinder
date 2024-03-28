@@ -3,7 +3,7 @@ import css from "./index.css";
 import { LoggedAtom, userDataAtom } from "../../atoms";
 import { useRecoilState } from "recoil";
 import { MyInput } from "../../ui/MyInput";
-import { LargeButton, MainButton } from "../../ui/MyButton";
+import { LargeButton } from "../../ui/MyButton";
 const url = "https://lostpets.onrender.com";
 
 export function MisDatos() {
@@ -35,7 +35,7 @@ export function MisDatos() {
       });
   }
 
-  function updateDatos(e){
+  function updateDatos(e) {
     e.preventDefault();
 
     const nombreInputValue = e.target.nombre.value;
@@ -80,8 +80,8 @@ export function MisDatos() {
 
         <MyInput name="nombre" label="Nombre:" defaultValue={fullname} placeholder={fullname} />
         <MyInput name="email" label="Email:" defaultValue={email} placeholder={email} />
-        <MyInput name="password" label="Cambiar contraseña:" />
-        <MyInput name="password2" label="Repetir contraseña:" />
+        <MyInput type="password" name="password" label="Cambiar contraseña:" />
+        <MyInput type="password" name="password2" label="Repetir contraseña:" />
 
         <LargeButton>Actualizar datos</LargeButton>
         <span className="advertencia"></span>

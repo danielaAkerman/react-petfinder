@@ -18,21 +18,23 @@
   border-radius: 5px;
   margin-top: 5px;
   height: 23px;
-
 }
 
-.form{
+.form {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.picture_container{
+.picture_container {
   display: flex;
+  width: 100%;
+  background-color: #a3ab94;
+  border-radius: 5px;
+  margin-top: 5px;
 }
 
-.pet_image{
+.pet_image {
   display: flex;
-  min-width: 340px;
-  max-width: 450px;
+  width: 100%;
 }

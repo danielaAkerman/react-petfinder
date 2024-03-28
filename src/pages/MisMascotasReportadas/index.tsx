@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { LoggedAtom, myReportedPetsSelector, userDataAtom } from "../../atoms";
 import { MyLostPetItem } from "../../components/MyLostPetItem";

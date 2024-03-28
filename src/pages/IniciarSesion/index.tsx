@@ -4,7 +4,7 @@ import css from "./index.css";
 import { useNavigate } from "react-router-dom";
 import { HayUserLocationAtom, LoggedAtom, UserLocationAtom, userDataAtom } from "../../atoms";
 import { MyInput } from "../../ui/MyInput";
-import { LargeButton, MainButton } from "../../ui/MyButton";
+import { LargeButton } from "../../ui/MyButton";
 import { CustomLink } from "../../ui/CustomLink";
 
 const url = "https://lostpets.onrender.com";
@@ -75,15 +75,13 @@ export function IniciarSesion() {
       <form onSubmit={submitIniciarSesion}>
 
         <MyInput name="email" label="Email:" />
-        <MyInput name="password" label="Contraseña:" />
+        <MyInput type="password" name="password" label="Contraseña:" />
 
         <LargeButton type="submit">Ingresar</LargeButton>
 
         <span className="advertencia"></span>
       </form>
       <CustomLink label="¿Aún no tenés cuenta? " funcion={irACrearCuenta}>Registrate</CustomLink>
-
-      {/* <span>¿Aún no tenés cuenta?<span onClick={irACrearCuenta}> Registrate</span></span> */}
     </div>
   );
 }

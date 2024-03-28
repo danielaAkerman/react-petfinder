@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { MyInput } from "../../ui/MyInput";
-import { LargeButton, MainButton } from "../../ui/MyButton";
+import { LargeButton } from "../../ui/MyButton";
 import { useRecoilState } from "recoil";
-import { UserLocationAtom, cambioAtom, datosMyPet, userDataAtom } from "../../atoms";
+import { cambioAtom, datosMyPet, userDataAtom } from "../../atoms";
 import css from "./index.css";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 
 const url = "https://lostpets.onrender.com";
 const MAPKEY = "pk.58d33aa8a8d98aab3cf1c2140e1014e3"
@@ -48,12 +47,7 @@ export function EditarPublicacion() {
       setCoords(previousUbicationPetCoords)
     })
 
-
-
   const mapURL = `https://maps.google.com/?ll=${coords.previousUbicatioLat},${coords.previousUbicatioLon}&z=12&t=m&output=embed`
-
-
-
 
   const convertiraBase64 = (archivos) => {
     Array.from(archivos).forEach((archivo: any) => {
@@ -78,7 +72,6 @@ export function EditarPublicacion() {
     datosNewPet.name = (e.target["pet-name"].value).toUpperCase();
     datosNewPet.ubication = (e.target.petubication.value).toUpperCase();
     datosNewPet.status = "lost";
-
 
     const PLACE =
       ((datosNewPet.ubication)
